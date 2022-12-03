@@ -3,15 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Online Image Compress & Converte to Base64</title>
-    <script type="text/javascript">
-        /*
-        三个参数
-        file：一个是文件(类型是图片格式)，
-        w：一个是文件压缩的后宽度，宽度越小，字节越小
-        objDiv：一个是容器或者回调函数
-        photoCompress()
-         */
-        function photoCompress(file,w,objDiv){
+		<link rel="icon" href="https://static.kkk.plus/favicon/favicon.png" sizes="23x23" type="image/x-icon">
+
+</head>
+<body>
+<center><input type="file" id="file" name="myfile" accept="image/x-png, image/jpg, image/jpeg, image/gif"/>
+<input type="button" onclick="UpladFile()" value="Start" />
+<button onclick="CopyToClipboard()"> Copy To Clipboard </button>
+<div id="imgTest"></div>
+<br><br><textarea id="imgdata" style="width:600px; height: 500px;"></textarea>
+</center>
+</body>
+<script>
+	 function photoCompress(file,w,objDiv){
             
             var ready=new FileReader();
             /*开始读取指定的Blob对象或File对象中的内容. 当读取操作完成时,readyState属性的值会成为DONE,如果设置了onloadend事件处理程序,则调用之.同时,result属性中将包含一个data: URL格式的字符串以表示所读取文件的内容.*/
@@ -138,17 +142,6 @@
             time.innerHTML = '，速度：'+speed+units+'，剩余时间：'+resttime+'s';
             if(bspeed==0) time.innerHTML = '上传已取消';
         }
-    </script>
-</head>
-<body>
-<center><input type="file" id="file" name="myfile" accept="image/x-png, image/jpg, image/jpeg, image/gif"/>
-<input type="button" onclick="UpladFile()" value="Start" />
-<button onclick="CopyToClipboard()"> Copy To Clipboard </button>
-<div id="imgTest"></div>
-<br><br><textarea id="imgdata" style="width:600px; height: 500px;"></textarea>
-</center>
-</body>
-<script>
     function CopyToClipboard() {
 			var copyText = document.getElementById("imgdata").value;
 			navigator.clipboard.writeText(copyText).then(() => {
