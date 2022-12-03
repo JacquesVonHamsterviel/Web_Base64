@@ -10,8 +10,8 @@
 <center><input type="file" id="file" name="myfile" accept="image/x-png, image/jpg, image/jpeg, image/gif"/>
 <input type="button" onclick="UpladFile()" value="Start" />
 <button onclick="CopyToClipboard()"> Copy To Clipboard </button>
-<div id="imgTest"></div>
 <br><br><textarea id="imgdata" style="width:600px; height: 500px;"></textarea>
+<div id="imgTest"></div>
 </center>
 </body>
 <script>
@@ -85,7 +85,7 @@
 			var divTest = document.getElementById("imgTest");
 			var newImage = document.createElement('img');
 			newImage.src=base64Codes;
-                        divTest.innerHTML += newImage.outerHTML;
+                        divTest.innerHTML = newImage.outerHTML;
                         document.getElementById("imgdata").innerHTML = '![' + fileObj.name + '](' + base64Codes + ')';
                 });   
         }
