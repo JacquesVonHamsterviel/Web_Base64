@@ -82,8 +82,9 @@
                 photoCompress(fileObj, {
                     quality: 0.2
                 }, function(base64Codes){
-                    divTest.innerHTML += newImage.outerHTML;
-                     document.getElementById("imgdata").innerHTML += '![' + fileObj.name + '](' + base64Codes + ')';
+			var divTest = document.getElementById("imgTest");
+                        divTest.innerHTML += newImage.outerHTML;
+                        document.getElementById("imgdata").innerHTML += '![' + fileObj.name + '](' + base64Codes + ')';
                 });   
         }
 
