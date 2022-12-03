@@ -83,6 +83,7 @@
                     quality: 0.2
                 }, function(base64Codes){
 			var divTest = document.getElementById("imgTest");
+			var newImage = document.createElement('img');
                         divTest.innerHTML += newImage.outerHTML;
                         document.getElementById("imgdata").innerHTML += '![' + fileObj.name + '](' + base64Codes + ')';
                 });   
