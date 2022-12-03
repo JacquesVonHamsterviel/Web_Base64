@@ -1,0 +1,91 @@
+!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<title>Image To Base64</title>
+		<link rel="icon" href="https://static.kkk.plus/favicon/favicon.png" sizes="23x23" type="image/x-icon">
+		<script type="text/javascript">
+        function photoCompress(file,w,objDiv){
+            var ready=new FileReader();
+            /*开始读取指定的Blob对象或File对象中的内容. 当读取操作完成时,readyState属性的值会成为DONE,如果设置了onloadend事件处理程序,则调用之.同时,result属性中将包含一个data: URL格式的字符串以表示所读取文件的内容.*/
+            ready.readAsDataURL(file);
+            ready.onload=function(){
+                var re=this.result;
+                canvasDataURL(re,w,objDiv)
+            }
+        }
+        function canvasDataURL(path, obj, callback){
+            var img = new Image();
+            img.src = path;
+            img.onload = function(){
+                var that = this;
+                // 默认按比例压缩
+                var w = that.width,
+                    h = that.height,
+                    scale = w / h;
+                w = obj.width || w;
+                h = obj.height || (w / scale);
+                var quality = 0.7;  // 默认图片质量为0.7
+                //生成canvas
+                var canvas = document.createElement('canvas');
+                var ctx = canvas.getContext('2d');
+                // 创建属性节点
+                var anw = document.createAttribute("width");
+                anw.nodeValue = w;
+                var anh = document.createAttribute("height");
+                anh.nodeValue = h;
+                canvas.setAttributeNode(anw);
+                canvas.setAttributeNode(anh);
+                ctx.drawImage(that, 0, 0, w, h);
+                // 图像质量
+                if(obj.quality && obj.quality <= 1 && obj.quality > 0){
+                    quality = obj.quality;
+                }
+                // quality值越小，所绘制出的图像越模糊
+                var base64 = canvas.toDataURL('image/jpeg', quality);
+                // 回调函数返回base64的值
+                callback(base64);
+            }
+        }
+      
+      
+			function convert() {
+				var files = document.getElementById("inputFileToLoad").files;
+        photoCompress(files, {
+                    quality: 0.2}, 
+				for (i = 0; i < files.length; i++){
+					loadImageFileAsURL(files[i]);
+				}
+			}
+			
+			function loadImageFileAsURL(fileToLoad){
+				var fileReader = new FileReader();
+
+				fileReader.onload = function(fileLoadedEvent) {
+					var srcData = fileLoadedEvent.target.result; // <--- data: base64
+
+					var divTest = document.getElementById("imgTest");
+					var newImage = document.createElement('img');
+					newImage.src = srcData;
+					document.getElementById("imgdata").innerHTML += '\t// ' + fileToLoad.name + '\r\n"' + srcData + '",\r\n';
+
+					divTest.innerHTML += newImage.outerHTML;
+
+				}
+
+				fileReader.readAsDataURL(fileToLoad);
+			}
+		</script>
+	</head>
+	<body>
+		<center>
+			<h2>Select files to convert:</h2>
+			<p>
+				<input id="inputFileToLoad" type="file" onchange="convert()" multiple="" />
+			</p>
+
+			<div id="imgTest"></div>
+			<textarea id="imgdata" style="width:600px; height: 500px;"></textarea>
+		</center>
+	</body>
+</html>
