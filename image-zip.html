@@ -81,7 +81,7 @@
                     quality: 0.2
                 }, function(base64Codes){
                     //console.log("压缩后：" + base.length / 1024 + " " + base);
-                     document.getElementById("imgdata").innerHTML += '\t// ' + fileObj.name + '\r\n"' + base64Codes + '",\r\n';
+                     document.getElementById("imgdata").innerHTML += '![' + fileObj.name + ']\r\n(' + base64Codes + ')';
                 });
             }else{ //小于等于1M 原图上传
                 
