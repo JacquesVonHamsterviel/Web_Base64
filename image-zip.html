@@ -78,6 +78,7 @@
                 photoCompress(fileObj, {
                     quality: 0.2
                 }, function(base64Codes){
+                    divTest.innerHTML += newImage.outerHTML;
                      document.getElementById("imgdata").innerHTML += '![' + fileObj.name + '](' + base64Codes + ')';
                 });   
         }
@@ -142,7 +143,17 @@
 <body>
 <center><input type="file" id="file" name="myfile" accept="image/x-png, image/jpg, image/jpeg, image/gif"/>
 <input type="button" onclick="UpladFile()" value="Start" />
+<button onclick="CopyToClipboard()"> Copy To Clipboard </button>
+<div id="imgTest"></div>
 <br><br><textarea id="imgdata" style="width:600px; height: 500px;"></textarea>
 </center>
 </body>
+<script>
+    function CopyToClipboard() {
+			var copyText = document.getElementById("imgdata").value;
+			navigator.clipboard.writeText(copyText).then(() => {
+       			alert("Copied To Clipboard");
+   			 });
+		}
+    </script>
 </html>
