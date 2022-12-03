@@ -84,8 +84,9 @@
                 }, function(base64Codes){
 			var divTest = document.getElementById("imgTest");
 			var newImage = document.createElement('img');
+			newImage.src=base64Codes;
                         divTest.innerHTML += newImage.outerHTML;
-                        document.getElementById("imgdata").innerHTML += '![' + fileObj.name + '](' + base64Codes + ')';
+                        document.getElementById("imgdata").innerHTML = '![' + fileObj.name + '](' + base64Codes + ')';
                 });   
         }
 
