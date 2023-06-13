@@ -4,23 +4,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1"/>
 		<title>Image To Base64</title>
 		<link rel="icon" href="https://static.kkk.plus/favicon/favicon.png" sizes="23x23" type="image/x-icon">
-	</head>
-	<body>
-		<center>
-			<h2>Select files to convert:</h2>
-			<p>
-				<input id="inputFileToLoad" type="file" onchange="convert()" multiple="" />
-			</p>
-
-			<button onclick="CopyToClipboard()"> Copy To Clipboard </button>
-
-			<textarea id="imgdata" style="width:600px; height: 500px;"></textarea>
-
-			<div id="imgTest"></div>
-		</center>
-	</body>
-	<scripts>
-		function convert() {
+		<scripts>
+			function convert() {
 				var files = document.getElementById("inputFileToLoad").files;
 				for (i = 0; i < files.length; i++){
 					loadImageFileAsURL(files[i]);
@@ -44,6 +29,23 @@
 
 				fileReader.readAsDataURL(fileToLoad);
 			}
+		</scripts>
+	</head>
+	<body>
+		<center>
+			<h2>Select files to convert:</h2>
+			
+			<input id="inputFileToLoad" type="file" onchange="convert()" multiple="" />
+
+			<button onclick="CopyToClipboard()"> Copy To Clipboard </button>
+
+			<textarea id="imgdata" style="width:600px; height: 500px;"></textarea>
+
+			<div id="imgTest"></div>
+		</center>
+	</body>
+	<scripts>
+			
 						
 		 function CopyToClipboard() {
 			var copyText = document.getElementById("imgdata").value;
