@@ -21,7 +21,7 @@
 					var divTest = document.getElementById("imgTest");
 					var newImage = document.createElement('img');
 					newImage.src = srcData;
-					document.getElementById("imgdata").innerHTML += '\t// ' + fileToLoad.name + '\r\n"' + srcData + '",\r\n';
+					document.getElementById("imgdata").innerHTML += "["+ fileToLoad.name + "](" + srcData + ")";
 
 					divTest.innerHTML += newImage.outerHTML;
 
